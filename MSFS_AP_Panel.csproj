@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Tools\\**\\*.cs" />
+  </ItemGroup>
+
+  <!-- Referenz für Microsoft.FlightSimulator.SimConnect -->
+  <ItemGroup>
+    <Reference Include="Microsoft.FlightSimulator.SimConnect">
+      <HintPath>$(MSBuildThisFileDirectory)SimConnect SDK\lib\managed\Microsoft.FlightSimulator.SimConnect.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Kopiere vorhandene SimConnect-DLLs in das Projektverzeichnis beim Build (falls vorhanden) -->
+  <ItemGroup>
+    <SimConnectFiles Include="$(MSBuildThisFileDirectory)SimConnect SDK\lib\managed\Microsoft.FlightSimulator.SimConnect.dll" Condition="Exists('$(MSBuildThisFileDirectory)SimConnect SDK\lib\managed\Microsoft.FlightSimulator.SimConnect.dll')" />
+    <SimConnectFiles Include="$(MSBuildThisFileDirectory)SimConnect SDK\lib\SimConnect.dll" Condition="Exists('$(MSBuildThisFileDirectory)SimConnect SDK\lib\SimConnect.dll')" />
+    <SimConnectFiles Include="$(MSBuildThisFileDirectory)Samples\VisualStudio\SimvarWatcher\Microsoft.FlightSimulator.SimConnect.dll" Condition="Exists('$(MSBuildThisFileDirectory)Samples\VisualStudio\SimvarWatcher\Microsoft.FlightSimulator.SimConnect.dll')" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
+  </ItemGroup>
+
+  <Target Name="CopySimConnectToProject" BeforeTargets="BeforeBuild">
+    <!-- Kopiere in das Projektverzeichnis -->
+    <Copy SourceFiles="@(SimConnectFiles)" DestinationFolder="$(MSBuildThisFileDirectory)" SkipUnchangedFiles="true" />
+    <!-- Kopiere außerdem in das Ausgabe-Verzeichnis (bin), damit die DLL zur Laufzeit gefunden wird -->
+    <Copy SourceFiles="@(SimConnectFiles)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

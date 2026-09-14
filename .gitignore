@@ -1,0 +1,23 @@
+# Ignore SimConnect SDK samples and documentation
+/Samples/
+/Documentation/
+
+# Ignore SimConnect binaries that should not be versioned
+/SimConnect*.dll
+/SimConnect_*.dll
+*.lib
+*.pdb
+*.exe
+
+# Local build artifacts and editor state
+/bin/
+/obj/
+/.vs/
+*.suo
+*.user
+
+# Optional local libs directory (ignored if used)
+/libs/
+
+# Keep IDE-specific settings out
+*.userprefs
