@@ -1,13 +1,13 @@
 # Ignore SimConnect SDK samples and documentation
 /Samples/
-/Documentation/
+#/Documentation/
 
 # Ignore SimConnect binaries that should not be versioned
 /SimConnect*.dll
 /SimConnect_*.dll
 *.lib
 *.pdb
-*.exe
+#*.exe
 
 # Local build artifacts and editor state
 /bin/
