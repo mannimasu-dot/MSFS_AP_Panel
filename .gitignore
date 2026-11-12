@@ -10,7 +10,7 @@
 #*.exe
 
 # Local build artifacts and editor state
-/bin/
+#/bin/
 /obj/
 /.vs/
 *.suo
