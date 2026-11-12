@@ -1,0 +1,4 @@
+AUTOPILOT ALTITUDE LOCK VAR,feet,False
+PLANE ALTITUDE,feet,False
+AUTOPILOT VERTICAL HOLD VAR,feet per minute,False
+VERTICAL SPEED,feet/minute,False
